@@ -1,1 +1,8 @@
-{"watching": false, "alerted": false, "last_bar_time": null, "bar_a_high": null, "trigger_price": null}
+{
+  "watching": false,
+  "ma": null,
+  "a_high": null,
+  "a_close": null,
+  "expiry": 0,
+  "prev": 0
+}
