@@ -14,25 +14,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      # Recuperar state.json si existe
-      - name: Pull latest
-        run: |
-          git pull || true
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - run: pip install -r requirements.txt
+      - name: Install deps
+        run: pip install -r requirements.txt
 
-      - run: python main.py
+      - name: Run bot
         env:
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python main.py
 
-      # Guardar state.json
       - name: Commit state
         run: |
           git config user.name "github-actions"
