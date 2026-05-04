@@ -1,5 +1,4 @@
 from flask import Flask
-import os
 import subprocess
 
 app = Flask(__name__)
@@ -10,5 +9,14 @@ def home():
 
 @app.route("/run")
 def run_bot():
-    subprocess.run(["python", "main.py"])
-    return "ok"
+    result = subprocess.run(
+        ["python", "main.py"],
+        capture_output=True,
+        text=True
+    )
+
+    return (
+        f"returncode={result.returncode}\n\n"
+        f"stdout:\n{result.stdout}\n\n"
+        f"stderr:\n{result.stderr}"
+    )
