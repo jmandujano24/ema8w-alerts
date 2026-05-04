@@ -1,5 +1,7 @@
 {
   "watching": false,
+  "ma": null,
+  "priority": 0,
   "a_high": null,
   "a_close": null,
   "expiry": 0,
